@@ -60,7 +60,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
 
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
-    implementation("com.facebook.android:facebook-android-sdk:8.x")
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
