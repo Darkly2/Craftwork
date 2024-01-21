@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+    id ("com.google.devtools.ksp") version ("1.6.21-1.0.5")
 }
 
 android {
@@ -36,6 +38,34 @@ android {
 }
 
 dependencies {
+
+
+    val lifecycle_version = "2.7.0"
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata:$lifecycle_version")
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation("androidx.lifecycle:lifecycle-runtime:$lifecycle_version")
+
+    // Saved state module for ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+
+    // Annotation processor
+    ksp("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+
+
+
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
+    implementation("com.facebook.android:facebook-android-sdk:8.x")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation ("io.reactivex.rxjava3:rxandroid:3.0.2")
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
