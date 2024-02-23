@@ -40,6 +40,7 @@ android {
 dependencies {
 
 
+    implementation("com.android.support:support-annotations:28.0.0")
     val lifecycle_version = "2.7.0"
 
     // ViewModel
@@ -54,9 +55,7 @@ dependencies {
 
     // Annotation processor
     ksp("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
-
-
-
+    implementation("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
 
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
