@@ -1,0 +1,71 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Craftwork</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	
++++ b/app/src/main/res/values/strings.xml	
+@@ -1,3 +1,5 @@
+ <resources>
+     <string name="app_name">Craftwork</string>
++    <string name="craft_item_image">Craft item image</string>
++    <string name="delete">Delete</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/example/craftwork/domain/user/UserRepository.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/craftwork/domain/user/UserRepository.kt b/app/src/main/java/com/example/craftwork/domain/user/UserRepository.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/craftwork/domain/user/UserRepository.kt	
+@@ -0,0 +1,14 @@
++package com.example.craftwork.domain.user
++
++interface UserRepository {
++    fun signInUser(eMail: String, password: String)
++    fun signOutUser(userId: String)
++    fun signUpUser(
++        email: String,
++        name: String,
++        lastName: String,
++        age: Int,
++        password: String
++    ): User
++    fun deleteUser(user: User)
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/craftwork/domain/user/UserListRepository.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/craftwork/domain/user/UserListRepository.kt b/app/src/main/java/com/example/craftwork/domain/user/UserListRepository.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/craftwork/domain/user/UserListRepository.kt	
+@@ -0,0 +1,9 @@
++package com.example.craftwork.domain.user
++
++import androidx.lifecycle.LiveData
++
++interface UserListRepository {
++    fun addUserInFriendList(user: User)
++    fun removeUserFromFriendList(user: User)
++    fun getFriendList(userId: String): LiveData<List<User>>
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/craftwork/domain/craftItem/GetItemUseCase.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/craftwork/domain/craftItem/GetItemUseCase.kt b/app/src/main/java/com/example/craftwork/domain/craftItem/GetItemUseCase.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/craftwork/domain/craftItem/GetItemUseCase.kt	
+@@ -0,0 +1,7 @@
++package com.example.craftwork.domain.craftItem
++
++class GetItemUseCase(private val craftItemListRepository: CraftItemListRepository) {
++    fun getItem(id: String): CraftItem {
++        return craftItemListRepository.getItem(id)
++    }
++}
+\ No newline at end of file

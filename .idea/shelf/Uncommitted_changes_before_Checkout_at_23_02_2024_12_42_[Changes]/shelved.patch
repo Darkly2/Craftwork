@@ -1,0 +1,19 @@
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"com.android.application\")\r\n    id(\"org.jetbrains.kotlin.android\")\r\n    id(\"com.google.gms.google-services\")\r\n    id (\"com.google.devtools.ksp\") version (\"1.6.21-1.0.5\")\r\n}\r\n\r\nandroid {\r\n    namespace = \"com.example.craftwork\"\r\n    compileSdk = 34\r\n\r\n    defaultConfig {\r\n        applicationId = \"com.example.craftwork\"\r\n        minSdk = 24\r\n        targetSdk = 34\r\n        versionCode = 1\r\n        versionName = \"1.0\"\r\n\r\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = false\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_1_8\r\n        targetCompatibility = JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = \"1.8\"\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n\r\n    val lifecycle_version = \"2.7.0\"\r\n\r\n    // ViewModel\r\n    implementation(\"androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version\")\r\n    // LiveData\r\n    implementation(\"androidx.lifecycle:lifecycle-livedata:$lifecycle_version\")\r\n    // Lifecycles only (without ViewModel or LiveData)\r\n    implementation(\"androidx.lifecycle:lifecycle-runtime:$lifecycle_version\")\r\n\r\n    // Saved state module for ViewModel\r\n    implementation(\"androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version\")\r\n\r\n    // Annotation processor\r\n    ksp(\"androidx.lifecycle:lifecycle-compiler:$lifecycle_version\")\r\n\r\n\r\n\r\n    implementation(platform(\"com.google.firebase:firebase-bom:32.7.1\"))\r\n\r\n    implementation(\"com.firebaseui:firebase-ui-auth:7.2.0\")\r\n\r\n    implementation (\"com.github.bumptech.glide:glide:4.16.0\")\r\n\r\n    implementation (\"io.reactivex.rxjava3:rxandroid:3.0.2\")\r\n    implementation (\"io.reactivex.rxjava3:rxjava:3.1.5\")\r\n\r\n    implementation(\"androidx.core:core-ktx:1.12.0\")\r\n    implementation(\"androidx.appcompat:appcompat:1.6.1\")\r\n    implementation(\"com.google.android.material:material:1.11.0\")\r\n    implementation(\"androidx.constraintlayout:constraintlayout:2.1.4\")\r\n    testImplementation(\"junit:junit:4.13.2\")\r\n    androidTestImplementation(\"androidx.test.ext:junit:1.1.5\")\r\n    androidTestImplementation(\"androidx.test.espresso:espresso-core:3.5.1\")\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	
++++ b/app/build.gradle.kts	
+@@ -55,8 +55,6 @@
+     // Annotation processor
+     ksp("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+ 
+-
+-
+     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+ 
+     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
