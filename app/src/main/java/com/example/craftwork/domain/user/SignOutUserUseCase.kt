@@ -1,4 +1,7 @@
 package com.example.craftwork.domain.user
 
-class SignOutUserUseCase {
+class SignOutUserUseCase(private val userRepository: UserRepository) {
+    fun signOutUser() {
+        userRepository.signOutUser()
+    }
 }
