@@ -54,7 +54,7 @@ dependencies {
 
     // Annotation processor
     ksp("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
-
+    implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
 
 
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
