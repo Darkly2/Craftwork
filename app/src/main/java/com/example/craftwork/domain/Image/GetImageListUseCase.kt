@@ -1,4 +1,9 @@
 package com.example.craftwork.domain.Image
 
-class GetImageListUseCase {
+import androidx.lifecycle.LiveData
+
+class GetImageListUseCase(private val imageListRepository: ImageListRepository) {
+    fun getImageList(): LiveData<List<Image>> {
+        return imageListRepository.getImageList()
+    }
 }
