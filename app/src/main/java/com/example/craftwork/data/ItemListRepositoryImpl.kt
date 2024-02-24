@@ -9,6 +9,13 @@ object ItemListRepositoryImpl : ItemListRepository {
 
     private val craftItemList = mutableListOf<CraftItem>()
     private var generatedId = 0
+
+    init {
+        for (num in 0..10) {
+            val item = CraftItem("Name $num", "CraftType $num")
+            addNewItem(item)
+        }
+    }
     override fun addNewItem(craftItem: CraftItem) {
         if (craftItem.id == CraftItem.UNDEFINED_ID) {
             craftItem.id = (++generatedId).toString()
