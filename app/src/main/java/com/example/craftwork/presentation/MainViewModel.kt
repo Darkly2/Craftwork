@@ -17,13 +17,14 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     private val editItemUseCase = EditItemUseCase(repository)
     private val getItemUseCase = GetItemUseCase(repository)
 
-    val craftItemList = getItemList()
-    fun getItemList(): LiveData<List<CraftItem>> {
-        return getItemListUseCase.getItemList()
+    val craftItemList = getItemListUseCase.getItemList()
+
+    fun getItem(craftItem: CraftItem) {
+        getItemUseCase.getItem(craftItem.id)
     }
     fun editItem(craftItem: CraftItem) {
-        val newItem = TODO()
-        editItemUseCase.editItem(craftItem)
+        val newItem = craftItem.copy()
+        editItemUseCase.editItem(newItem)
     }
 
 }
