@@ -2,7 +2,9 @@ package com.example.craftwork.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.ListAdapter
+import com.example.craftwork.R
 import com.example.craftwork.databinding.CraftItemBinding
 import com.example.craftwork.domain.craftItem.CraftItem
 
@@ -18,7 +20,10 @@ class CraftItemAdapter : ListAdapter<CraftItem, CraftItemViewHolder>(CraftItemCa
 
 
     override fun onBindViewHolder(holder: CraftItemViewHolder, position: Int) {
-        holder.
+        val item = getItem(position)
+        holder.binding.imageViewCraftItem.setImageDrawable(android.R.drawable.btn_star.toDrawable())
+        holder.binding.textViewCraftItemType.text = item.name
+        holder.binding.textViewCraftItemType.text = item.craftType
     }
 
 }

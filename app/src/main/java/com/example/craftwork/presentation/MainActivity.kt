@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.craftwork.R
 import com.example.craftwork.databinding.ActivityMainBinding
 
@@ -17,10 +18,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
+
+        val craftItemAdapter = CraftItemAdapter()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.craftItemList.observe(this) {
-            Log.d(TAG, it.toString())
+            craftItemAdapter.submitList(it)
         }
+
+        val recyclerView = binding.root
+        recyclerView.adapter = craftItemAdapter
+
+
     }
 
 
