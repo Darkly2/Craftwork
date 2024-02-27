@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Craftwork</string>
+    <string name="craft_item_image">Craft item image</string>
 </resources>
