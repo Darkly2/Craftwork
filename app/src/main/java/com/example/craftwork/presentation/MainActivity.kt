@@ -17,18 +17,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         val craftItemAdapter = CraftItemAdapter()
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.craftItemList.observe(this) {
             craftItemAdapter.submitList(it)
+            Log.d(TAG, it.toString())
         }
+
 
         val recyclerView = binding.root
         recyclerView.adapter = craftItemAdapter
-
-
     }
 
 

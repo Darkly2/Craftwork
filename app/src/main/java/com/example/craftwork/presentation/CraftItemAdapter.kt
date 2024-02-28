@@ -22,7 +22,7 @@ class CraftItemAdapter : ListAdapter<CraftItem, CraftItemViewHolder>(CraftItemCa
     override fun onBindViewHolder(holder: CraftItemViewHolder, position: Int) {
         val item = getItem(position)
         holder.binding.imageViewCraftItem.setImageDrawable(android.R.drawable.btn_star.toDrawable())
-        holder.binding.textViewCraftItemType.text = item.name
+        holder.binding.textViewCraftItemName.text = item.name
         holder.binding.textViewCraftItemType.text = item.craftType
     }
 
