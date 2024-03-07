@@ -2,4 +2,7 @@
     <string name="app_name">Craftwork</string>
     <string name="craft_item_image">Craft item image</string>
     <string name="name_hint">Name</string>
+    <string name="description">Description</string>
+    <string name="craft_type">Craft type</string>
+    <string name="save">Save</string>
 </resources>
