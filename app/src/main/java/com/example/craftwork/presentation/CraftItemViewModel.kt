@@ -16,8 +16,15 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
     private val getItemUseCase = GetItemUseCase(repository)
     private val editItemUseCase = EditItemUseCase(repository)
 
-    fun addNewItem(craftItem: CraftItem) {
-        addNewItemUseCase.addNewItem(craftItem)
+    fun addNewItem(
+        inputName: String?,
+        inputCraftType: String?,
+        inputDescription: String?) {
+        val name = parseInput(inputName)
+        val craftType = parseInput(inputCraftType)
+        val description = parseInput(inputDescription)
+        val item = CraftItem(name, craftType, description)
+        addNewItemUseCase.addNewItem(item)
     }
 
     fun getItem(id: String): CraftItem {
@@ -27,6 +34,10 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
     fun editItem(craftItem: CraftItem) {
         val newItem = craftItem.copy()
         editItemUseCase.editItem(newItem)
+    }
+
+    private fun parseInput(input: String?): String {
+        return input?.trim() ?: ""
     }
 
 }
