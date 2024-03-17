@@ -15,7 +15,11 @@ object ItemListRepositoryImpl : ItemListRepository {
 
     init {
         for (num in 0..10) {
-            val item = CraftItem("Name $num", "CraftType $num")
+            val item = CraftItem(
+                "Name $num",
+                "Crafttype $num",
+                "Desc $num"
+            )
             addNewItem(item)
         }
     }
