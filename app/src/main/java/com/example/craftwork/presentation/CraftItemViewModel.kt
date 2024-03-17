@@ -16,12 +16,8 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
     private val getItemUseCase = GetItemUseCase(repository)
     private val editItemUseCase = EditItemUseCase(repository)
 
-    fun addNewItem(
-        name: String,
-        craftType: String,
-        description: String) {
-        val item = CraftItem(name, craftType, description)
-        addNewItemUseCase.addNewItem(item)
+    fun addNewItem(craftItem: CraftItem) {
+        addNewItemUseCase.addNewItem(craftItem)
     }
 
     fun getItem(id: String): CraftItem {
