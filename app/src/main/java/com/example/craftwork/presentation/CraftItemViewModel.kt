@@ -19,25 +19,65 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
     fun addNewItem(
         inputName: String?,
         inputCraftType: String?,
-        inputDescription: String?) {
+        inputDescription: String?
+    ) {
         val name = parseInput(inputName)
         val craftType = parseInput(inputCraftType)
         val description = parseInput(inputDescription)
-        val item = CraftItem(name, craftType, description)
-        addNewItemUseCase.addNewItem(item)
+        val validInput = validateInput(name, craftType, description)
+        if (validInput) {
+            val item = CraftItem(name, craftType, description)
+            addNewItemUseCase.addNewItem(item)
+        }
+
     }
 
     fun getItem(id: String): CraftItem {
         return getItemUseCase.getItem(id)
     }
 
-    fun editItem(craftItem: CraftItem) {
-        val newItem = craftItem.copy()
-        editItemUseCase.editItem(newItem)
+    fun editItem(
+        craftItem: CraftItem,
+        inputName: String?,
+        inputCraftType: String?,
+        inputDescription: String?
+    ) {
+        val name = parseInput(inputName)
+        val craftType = parseInput(inputCraftType)
+        val description = parseInput(inputDescription)
+        val validInput = validateInput(name, craftType, description)
+        if (validInput) {
+            val newItem = craftItem.copy(name, craftType, description)
+            editItemUseCase.editItem(newItem)
+        }
+
     }
 
     private fun parseInput(input: String?): String {
         return input?.trim() ?: ""
     }
 
+    private fun validateInput(
+        name: String,
+        craftType: String,
+        description: String
+    ): Boolean {
+        var result = true
+        result = when {
+            name.isBlank() -> {
+                TODO("error")
+                false
+            }
+            craftType.isBlank() -> {
+                TODO("error")
+                false
+            }
+            description.isBlank() -> {
+                TODO("error")
+                false
+            }
+            else -> true
+        }
+        return result
+    }
 }
