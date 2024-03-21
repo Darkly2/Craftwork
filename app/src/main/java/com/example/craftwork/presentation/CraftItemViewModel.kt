@@ -2,6 +2,8 @@ package com.example.craftwork.presentation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.craftwork.data.ItemListRepositoryImpl
 import com.example.craftwork.domain.craftItem.AddNewItemUseCase
 import com.example.craftwork.domain.craftItem.CraftItem
@@ -15,6 +17,19 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
     private val addNewItemUseCase = AddNewItemUseCase(repository)
     private val getItemUseCase = GetItemUseCase(repository)
     private val editItemUseCase = EditItemUseCase(repository)
+
+    private val _errorNameValid = MutableLiveData<Boolean>()
+    val errorNameValid: LiveData<Boolean>
+        get() = _errorNameValid
+
+    private val _errorCraftTypeValid = MutableLiveData<Boolean>()
+    val errorCraftTypeValid: LiveData<Boolean>
+        get() = _errorNameValid
+
+    private val _errorDescriptionValid = MutableLiveData<Boolean>()
+    val errorDescriptionValid: LiveData<Boolean>
+        get() = _errorNameValid
+
 
     fun addNewItem(
         inputName: String?,
