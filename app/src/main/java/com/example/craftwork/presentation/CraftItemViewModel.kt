@@ -18,6 +18,10 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
     private val getItemUseCase = GetItemUseCase(repository)
     private val editItemUseCase = EditItemUseCase(repository)
 
+    private val _craftItemLD = MutableLiveData<CraftItem>()
+    val craftItemLD: LiveData<CraftItem>
+        get() = _craftItemLD
+
     private val _errorNameValid = MutableLiveData<Boolean>()
     val errorNameValid: LiveData<Boolean>
         get() = _errorNameValid
@@ -29,6 +33,11 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
     private val _errorDescriptionValid = MutableLiveData<Boolean>()
     val errorDescriptionValid: LiveData<Boolean>
         get() = _errorNameValid
+
+    private val _shouldCloseScreenLD = MutableLiveData<Unit>()
+    val shouldCloseScreenLD: LiveData<Unit>
+        get() = _shouldCloseScreenLD
+
 
 
     fun addNewItem(
@@ -42,13 +51,14 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
         val validInput = validateInput(name, craftType, description)
         if (validInput) {
             val item = CraftItem(name, craftType, description)
-            addNewItemUseCase.addNewItem(item)
+            finishWork()
         }
 
     }
 
-    fun getItem(id: String): CraftItem {
-        return getItemUseCase.getItem(id)
+    fun getItem(id: String){
+        val item = getItemUseCase.getItem(id)
+        _craftItemLD.value = item
     }
 
     fun editItem(
@@ -62,8 +72,15 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
         val description = parseInput(inputDescription)
         val validInput = validateInput(name, craftType, description)
         if (validInput) {
-            val newItem = craftItem.copy(name, craftType, description)
-            editItemUseCase.editItem(newItem)
+            _craftItemLD.value?.let{
+                val item = it.copy(
+                    name = name,
+                    craftType = craftType,
+                    description = description
+                )
+                editItemUseCase.editItem(item)
+                finishWork()
+            }
         }
 
     }
@@ -80,19 +97,33 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
         var result = true
         result = when {
             name.isBlank() -> {
-                TODO("error")
+                _errorNameValid.value = true
                 false
             }
             craftType.isBlank() -> {
-                TODO("error")
+                _errorCraftTypeValid.value = true
                 false
             }
             description.isBlank() -> {
-                TODO("error")
+                _errorDescriptionValid.value = true
                 false
             }
             else -> true
         }
         return result
+    }
+
+    private fun resetErrorName() {
+        _errorNameValid.value = false
+    }
+    private fun resetErrorCraftType() {
+        _errorCraftTypeValid.value = false
+    }
+    private fun resetErrorDescription() {
+        _errorDescriptionValid.value = false
+    }
+
+    private fun finishWork() {
+        _shouldCloseScreenLD.value = Unit
     }
 }
