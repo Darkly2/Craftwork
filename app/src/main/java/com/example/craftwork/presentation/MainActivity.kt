@@ -1,5 +1,7 @@
 package com.example.craftwork.presentation
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +30,17 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView = binding.craftItemRWAdapter
         recyclerView.adapter = craftItemAdapter
+
+        val floatingActionButton = binding.floatingActionButton
+        floatingActionButton.setOnClickListener {
+            val intent = CraftItemActivity.newIntentAddItem(this)
+            startActivity(intent)
+        }
+
+        craftItemAdapter.onItemClickListener = {
+            val intent = CraftItemActivity.newIntentEditItem(this, it.id)
+            startActivity(intent)
+        }
     }
 
 

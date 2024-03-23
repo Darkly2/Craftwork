@@ -9,6 +9,9 @@ import com.example.craftwork.databinding.CraftItemBinding
 import com.example.craftwork.domain.craftItem.CraftItem
 
 class CraftItemAdapter : ListAdapter<CraftItem, CraftItemViewHolder>(CraftItemCallback()) {
+
+    var onItemClickListener: ((CraftItem) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CraftItemViewHolder {
         val binding = CraftItemBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -24,6 +27,10 @@ class CraftItemAdapter : ListAdapter<CraftItem, CraftItemViewHolder>(CraftItemCa
         holder.binding.imageViewCraftItem.setImageDrawable(android.R.drawable.btn_star.toDrawable())
         holder.binding.textViewCraftItemName.text = item.name
         holder.binding.textViewCraftItemType.text = item.craftType
+
+        holder.binding.root.setOnClickListener  {
+            onItemClickListener?.invoke(item)
+        }
     }
 
 }
