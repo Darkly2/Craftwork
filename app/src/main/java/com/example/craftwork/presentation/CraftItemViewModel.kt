@@ -82,7 +82,6 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
                 finishWork()
             }
         }
-
     }
 
     private fun parseInput(input: String?): String {

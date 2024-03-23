@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val recyclerView = binding.root
+        val recyclerView = binding.craftItemRWAdapter
         recyclerView.adapter = craftItemAdapter
     }
 
