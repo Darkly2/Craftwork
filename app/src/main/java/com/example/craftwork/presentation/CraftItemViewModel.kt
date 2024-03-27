@@ -112,13 +112,13 @@ class CraftItemViewModel(application: Application) : AndroidViewModel(applicatio
         return result
     }
 
-    private fun resetErrorName() {
+    fun resetErrorName() {
         _errorNameValid.value = false
     }
-    private fun resetErrorCraftType() {
+    fun resetErrorCraftType() {
         _errorCraftTypeValid.value = false
     }
-    private fun resetErrorDescription() {
+    fun resetErrorDescription() {
         _errorDescriptionValid.value = false
     }
 
